@@ -26,7 +26,6 @@
       state: present
   with_items:
   - "curl"
-  when: ansible_distribution == "Ubuntu"
 
 - name: Download Oracle JDK Tarball
   become: no
