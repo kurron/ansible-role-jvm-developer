@@ -12,7 +12,7 @@
   become: yes
   get_url:
       url: "http://download.oracle.com/otn-pub/java/jdk/{{ jvm_oracle_jdk_path }}-linux-x64.tar.gz"
-      dest: "{{ansible_user_dir}}/oracle-jdk-{{ jvm_oracle_jdk_version }}.tar.gz"
+      dest: "{{ansible_user_dir}}/{{jvm_download_directory}}/oracle-jdk-{{ jvm_oracle_jdk_version }}.tar.gz"
       headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
       mode: 0444
   when: jvm_oracle_jdk_install
@@ -52,5 +52,25 @@
       group: "{{ansible_user_gid}}"
       mode: 0555
   when: jvm_oracle_jdk_install
+
+- name: Download SDKMAN!
+  become: no
+  get_url:
+      url: "https://get.sdkman.io"
+      dest: "{{ansible_user_dir}}/{{jvm_download_directory}}/sdkman-install.sh"
+      mode: 0554
+  when: jvm_sdkman_install
+
+- name: Install cURL
+  become: yes
+  package:
+      name: curl
+      state: present
+  when: jvm_sdkman_install
+
+- name: Run SDKMAN! Installer
+  become: no
+  shell: "{{ansible_user_dir}}/{{jvm_download_directory}}/sdkman-install.sh"
+  when: jvm_sdkman_install
 
 
