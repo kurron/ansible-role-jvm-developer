@@ -1,15 +1,16 @@
 ---
-- name: Create target folder 
+- name: Create privledged folders 
+  become: yes
   file:
       path: "{{item}}"
       state: directory
       mode: 0755
       recurse: yes
   with_items:
-  - "{{ jvm_destination }}"
+  - "{{jvm_destination}}"
 
 - name: Download Oracle JDK Tarball
-  become: yes
+  become: no
   get_url:
       url: "http://download.oracle.com/otn-pub/java/jdk/{{ jvm_oracle_jdk_path }}-linux-x64.tar.gz"
       dest: "{{ansible_user_dir}}/{{jvm_download_directory}}/oracle-jdk-{{ jvm_oracle_jdk_version }}.tar.gz"
@@ -20,7 +21,7 @@
 - name: Uncompress Oracle JDK Tarball
   become: yes
   unarchive:
-      src: "{{ansible_user_dir}}/oracle-jdk-{{jvm_oracle_jdk_version}}.tar.gz"
+      src: "{{ansible_user_dir}}/{{jvm_download_directory}}/oracle-jdk-{{jvm_oracle_jdk_version}}.tar.gz"
       dest: "{{ jvm_destination }}"
       copy: no
       owner: "{{ansible_user_uid}}"
@@ -30,6 +31,7 @@
   when: jvm_oracle_jdk_install
 
 - name: Test Oracle JDK
+  become: no
   command: "{{jvm_destination}}/{{jvm_oracle_jdk_version}}/bin/java -version"
   when: jvm_oracle_jdk_install
 
