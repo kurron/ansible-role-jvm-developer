@@ -19,6 +19,15 @@
   with_items:
   - "{{ansible_user_dir}}/{{jvm_software_directory}}"
 
+- name: Install Required Packages
+  become: yes
+  package:
+      name: "{{item}}"
+      state: present
+  with_items:
+  - "curl"
+  when: ansible_distribution == "Ubuntu"
+
 - name: Download Oracle JDK Tarball
   become: no
   get_url:
@@ -71,13 +80,6 @@
       url: "https://get.sdkman.io"
       dest: "{{ansible_user_dir}}/{{jvm_download_directory}}/sdkman-install.sh"
       mode: 0554
-  when: jvm_sdkman_install
-
-- name: Install cURL
-  become: yes
-  package:
-      name: curl
-      state: present
   when: jvm_sdkman_install
 
 - name: Run SDKMAN! Installer
