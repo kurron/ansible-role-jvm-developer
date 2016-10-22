@@ -1,5 +1,6 @@
 ---
 jvm_download_directory: Downloads
+jvm_software_directory: Software
 jvm_destination: /usr/lib/jvm
 
 jvm_oracle_jdk_install: true
