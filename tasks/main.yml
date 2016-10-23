@@ -62,6 +62,16 @@
       state: link
   when: jvm_azul_jdk_install
 
+- name: Create Softlink To Neutral JDK
+  become: yes
+  file:
+      src: "{{jvm_destination}}//zulu{{jvm_azul_jdk_build}}-jdk{{jvm_azul_jdk_version}}-linux_x64"
+      dest: "{{jvm_destination}}/{{jvm_neutral_jdk_link_destination}}"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      state: link
+  when: jvm_azul_jdk_install
+
 - name: Set Global Environment To Use Azul JDK
   become: yes
   template:
@@ -100,9 +110,19 @@
 
 - name: Create Softlink To Oracle JDK
   become: yes
-  file: 
+  file:
       src: "{{jvm_destination}}/{{jvm_oracle_jdk_version}}"
       dest: "{{jvm_destination}}/{{jvm_oracle_jdk_link_destination}}"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      state: link
+  when: jvm_oracle_jdk_install
+
+- name: Create Softlink To Neutral JDK
+  become: yes
+  file:
+      src: "{{jvm_destination}}/{{jvm_oracle_jdk_version}}"
+      dest: "{{jvm_destination}}/{{jvm_neutral_jdk_link_destination}}"
       owner: "{{ansible_user_uid}}"
       group: "{{ansible_user_gid}}"
       state: link
@@ -170,6 +190,23 @@
       group: "{{ansible_user_gid}}"
       mode: 0555
   when: jvm_intellij_install
+
+- name: Set Global Environment To Have IntelliJ Use Shared JDK
+  become: yes
+  template:
+      src: "templates/intellij-environment.sh.j2"
+      dest: "/etc/profile.d/intellij-environment.sh"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0555
+  when: jvm_intellij_share_jdk
+
+- name: Remove IntelliJ's Embedded JDK
+  become: no
+  file:
+      path: "{{ansible_user_dir}}/{{jvm_software_directory}}/idea/jre"
+      state: absent
+  when: jvm_intellij_share_jdk
 
 
 

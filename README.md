@@ -19,6 +19,7 @@ Role Variables
 * jvm_intellij_install: true
 * jvm_intellij_version: 2016.2.4
 * jvm_intellij_build: 162.2032.8
+* jvm_intellij_share_jdk: true
 * jvm_azul_jdk_install: true
 * jvm_azul_jdk_build: 8.17.0.3
 * jvm_azul_jdk_version: 8.0.102
