@@ -21,3 +21,6 @@ jvm_azul_jdk_build: 8.17.0.3
 jvm_azul_jdk_version: 8.0.102
 jvm_azul_jdk_link_destination: azul-jdk-8
 
+jvm_charles_install: true
+jvm_charles_version: 4.0.1
+
