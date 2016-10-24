@@ -1,7 +1,5 @@
 ---
 jvm_download_directory: Downloads
-jvm_software_directory: Software
-jvm_default_jvm_director: /usr/lib/jvm/jdk-8
 
 jvm_sdkman_install: true
 
