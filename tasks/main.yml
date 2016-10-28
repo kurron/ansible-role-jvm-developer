@@ -10,6 +10,8 @@
 - name: Run SDKMAN! Installer
   become: no
   shell: "{{ansible_user_dir}}/{{base_download_directory}}/sdkman-install.sh"
+  args:
+      creates: "{{ansible_user_dir}}/.sdkman/etc/config"
   when: jvm_sdkman_install
 
 - name: Download IntelliJ IDEA Tarball
