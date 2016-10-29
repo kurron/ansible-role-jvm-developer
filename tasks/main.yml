@@ -51,7 +51,7 @@
       dest: "{{ansible_user_dir}}/Desktop/idea.desktop"
       owner: "{{ansible_user_uid}}"
       group: "{{ansible_user_gid}}"
-      mode: 0555
+      mode: 0755
   when: jvm_intellij_install
 
 - name: Set Global Environment To Have IntelliJ Use Shared JDK
@@ -98,6 +98,6 @@
       dest: "{{ansible_user_dir}}/Desktop/charles.desktop"
       owner: "{{ansible_user_uid}}"
       group: "{{ansible_user_gid}}"
-      mode: 0555
+      mode: 0755
   when: jvm_charles_install
 
