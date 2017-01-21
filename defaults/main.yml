@@ -2,8 +2,8 @@
 jvm_sdkman_install: true
 
 jvm_intellij_install: true
-jvm_intellij_version: 2016.3.2
-jvm_intellij_build: 163.10154.41
+jvm_intellij_version: 2016.3.3
+jvm_intellij_build: 163.11103.6
 jvm_intellij_share_jdk: true
 
 jvm_charles_install: true
