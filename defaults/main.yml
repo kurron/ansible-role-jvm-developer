@@ -9,3 +9,6 @@ jvm_intellij_share_jdk: true
 jvm_charles_install: true
 jvm_charles_version: 4.1.1
 
+jvm_visualvm_install: true
+jvm_visualvm_version: 1.3.9
+jvm_visualvm_zip: 139

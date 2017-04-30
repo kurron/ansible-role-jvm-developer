@@ -101,3 +101,53 @@
       mode: 0755
   when: jvm_charles_install
 
+- name: Download VisualVM Tarball
+  become: no
+  get_url:
+      url: "https://github.com/visualvm/visualvm.src/releases/download/{{jvm_visualvm_version}}/visualvm_{{jvm_visualvm_zip}}.zip"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/visualvm-{{jvm_visualvm_version}}.zip"
+      mode: 0444
+  when: jvm_visualvm_install
+
+- name: Uncompress VisualVM Tarball
+  become: no
+  unarchive:
+      src: "{{ansible_user_dir}}/{{base_download_directory}}/visualvm-{{jvm_visualvm_version}}.zip"
+      dest: "{{ansible_user_dir}}/{{base_software_directory}}"
+      copy: no
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0555
+      creates: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm_{{jvm_visualvm_zip}}/LICENSE.txt"
+  when: jvm_visualvm_install
+
+- name: Create Softlink To VisualVM 
+  become: no
+  file:
+      src: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm_{{jvm_visualvm_zip}}"
+      dest: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      state: link
+  when: jvm_visualvm_install
+
+- name: Create Desktop Icon For VisualVM
+  become: no
+  template:
+      src: "templates/visualvm.desktop.j2"
+      dest: "{{ansible_user_dir}}/Desktop/visualvm.desktop"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0755
+  when: jvm_visualvm_install
+
+- name: Copy Desktop Icon For VisualVM
+  become: no
+  copy:
+      src: "files/visualvm_logo.png"
+      dest: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm/visualvm.png"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0444
+  when: jvm_visualvm_install
+
