@@ -117,7 +117,7 @@
       copy: no
       owner: "{{ansible_user_uid}}"
       group: "{{ansible_user_gid}}"
-      mode: 0655
+      mode: 0775
       creates: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm_{{jvm_visualvm_zip}}/LICENSE.txt"
   when: jvm_visualvm_install
 
