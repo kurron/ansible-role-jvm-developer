@@ -92,7 +92,7 @@
   when: jvm_charles_install
 
 - name: Remove Charles' Embedded JDK
-  become: no
+  become: yes
   file:
       path: "{{ansible_user_dir}}/{{base_software_directory}}/charles/lib/jre"
       state: absent
