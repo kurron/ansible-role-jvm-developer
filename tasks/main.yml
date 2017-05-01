@@ -91,6 +91,13 @@
       creates: "{{ansible_user_dir}}/{{base_software_directory}}/charles/doc/EULA.rtf"
   when: jvm_charles_install
 
+- name: Remove Charles' Embedded JDK
+  become: no
+  file:
+      path: "{{ansible_user_dir}}/{{base_software_directory}}/charles/lib/jre"
+      state: absent
+  when: jvm_charles_install
+
 - name: Create Desktop Icon For Charles
   become: no
   template:
