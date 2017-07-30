@@ -67,7 +67,7 @@
 - name: Remove IntelliJ's Embedded JDK
   become: no
   file:
-      path: "{{ansible_user_dir}}/{{base_software_directory}}/idea/jre"
+      path: "{{ansible_user_dir}}/{{base_software_directory}}/idea/jre64"
       state: absent
   when: jvm_intellij_share_jdk
 
