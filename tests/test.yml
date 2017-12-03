@@ -1,4 +1,4 @@
 ---
-- hosts: remote
+- hosts: localhost
   roles:
-  - role: ../../ansible-role-jvm-developer
+  - role: kurron.jvm-developer
