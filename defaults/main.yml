@@ -12,3 +12,7 @@ jvm_charles_version: 4.2.1
 jvm_visualvm_install: true
 jvm_visualvm_version: 1.4
 jvm_visualvm_zip: 14
+
+jvm_android_studio_install: true
+jvm_android_studio_version: 3.0.1.0
+jvm_android_studio_build: 171.4443003

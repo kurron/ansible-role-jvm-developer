@@ -128,7 +128,7 @@
       creates: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm_{{jvm_visualvm_zip}}/LICENSE.txt"
   when: jvm_visualvm_install
 
-- name: Create Softlink To VisualVM 
+- name: Create Softlink To VisualVM
   become: no
   file:
       src: "{{ansible_user_dir}}/{{base_software_directory}}/visualvm_{{jvm_visualvm_zip}}"
@@ -158,3 +158,10 @@
       mode: 0444
   when: jvm_visualvm_install
 
+- name: Download Android Studio Tarball
+  become: no
+  get_url:
+      url: "https://dl.google.com/dl/android/studio/ide-zips/{{ jvm_android_studio_version }}/android-studio-ide-{{ jvm_android_studio_build }}-linux.zip"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/idea-{{ jvm_android_studio_version }}.zip"
+      mode: 0444
+  when: jvm_android_studio_install
