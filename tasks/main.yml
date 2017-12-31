@@ -162,6 +162,45 @@
   become: no
   get_url:
       url: "https://dl.google.com/dl/android/studio/ide-zips/{{ jvm_android_studio_version }}/android-studio-ide-{{ jvm_android_studio_build }}-linux.zip"
-      dest: "{{ansible_user_dir}}/{{base_download_directory}}/idea-{{ jvm_android_studio_version }}.zip"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/android-studio-{{ jvm_android_studio_version }}.zip"
       mode: 0444
+  when: jvm_android_studio_install
+
+- name: Uncompress Android Studio Tarball
+  become: no
+  unarchive:
+      src: "{{ansible_user_dir}}/{{base_download_directory}}/android-studio-{{ jvm_android_studio_version }}.zip"
+      dest: "{{ansible_user_dir}}/{{base_software_directory}}"
+      copy: no
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0775
+      creates: "{{ansible_user_dir}}/{{base_software_directory}}/android-studio/LICENSE.txt"
+  when: jvm_android_studio_install
+
+- name: Create Desktop Icon For Android Studio
+  become: no
+  template:
+      src: "templates/android-studio.desktop.j2"
+      dest: "{{ansible_user_dir}}/Desktop//android-studio.desktop"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0755
+  when: jvm_android_studio_install
+
+- name: Set Global Environment To Have Android Studio Use Shared JDK
+  become: yes
+  template:
+      src: "templates/android-studio-environment.sh.j2"
+      dest: "/etc/profile.d/android-studio-environment.sh"
+      owner: "{{ansible_user_uid}}"
+      group: "{{ansible_user_gid}}"
+      mode: 0555
+  when: jvm_android_studio_share_jdk
+
+- name: Remove Android Studio's Embedded JDK
+  become: yes
+  file:
+      path: "{{ansible_user_dir}}/{{base_software_directory}}/android-studio/jre"
+      state: absent
   when: jvm_android_studio_install
