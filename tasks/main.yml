@@ -196,11 +196,11 @@
       owner: "{{ansible_user_uid}}"
       group: "{{ansible_user_gid}}"
       mode: 0555
-  when: jvm_android_studio_install && jvm_android_studio_share_jdk
+  when: jvm_android_studio_share_jdk
 
 - name: Remove Android Studio's Embedded JDK
   become: yes
   file:
       path: "{{ansible_user_dir}}/{{base_software_directory}}/android-studio/jre"
       state: absent
-  when: jvm_android_studio_install && jvm_android_studio_share_jdk
+  when: jvm_android_studio_share_jdk
