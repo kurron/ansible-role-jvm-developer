@@ -18,7 +18,7 @@ xhost +
 
 CMD="docker run --env DISPLAY=unix${DISPLAY} \
                 --env HOME=${HOME_DIR} \
-                --env IDEA_JDK=/usr/lib/jvm/azul-jdk-8 \
+                --env PYCHARM_JDK=/usr/lib/jvm/azul-jdk-8 \
                 --env JDK_HOME=/usr/lib/jvm/azul-jdk-8 \
                 --env JAVA_HOME=/usr/lib/jvm/azul-jdk-8 \
                 --net host \
