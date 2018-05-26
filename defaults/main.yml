@@ -2,18 +2,18 @@
 jvm_sdkman_install: true
 
 jvm_intellij_install: true
-jvm_intellij_version: 2018.1
-jvm_intellij_build: 181.4203.550
+jvm_intellij_version: 2018.1.4
+jvm_intellij_build: 181.5087.20
 jvm_intellij_share_jdk: true
 
 jvm_charles_install: true
-jvm_charles_version: 4.2.1
+jvm_charles_version: 4.2.5
 
-jvm_visualvm_install: true
+jvm_visualvm_install: false
 jvm_visualvm_version: 1.4
 jvm_visualvm_zip: 14
 
-jvm_android_studio_install: true
+jvm_android_studio_install: false
 jvm_android_studio_version: 3.0.1.0
 jvm_android_studio_build: 171.4443003
 jvm_android_studio_share_jdk: true
