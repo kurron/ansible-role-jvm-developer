@@ -6,7 +6,7 @@ jvm_intellij_version: 2018.2
 jvm_intellij_build: 182.3684.101
 jvm_intellij_share_jdk: true
 
-jvm_charles_install: true
+jvm_charles_install: false
 jvm_charles_version: 4.2.6
 
 jvm_visualvm_install: false
