@@ -3,8 +3,8 @@ jvm_sdkman_install: true
 
 # https://www.jetbrains.com/idea/
 jvm_intellij_install: true
-jvm_intellij_version: 2018.3.4
-jvm_intellij_build: 183.5429.30
+jvm_intellij_version: 2019.1.2
+jvm_intellij_build: 191.7141.44
 jvm_intellij_share_jdk: true
 
 jvm_charles_install: false

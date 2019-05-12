@@ -15,7 +15,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": ["apt-get update && apt-get install --yes python python-pip libxrender1 libxtst6 libxi6 ttf-dejavu && pip install --upgrade ansible"]
+            "inline": ["apt-get update && apt-get install --yes python python-pip libxrender1 libxtst6 libxi6 ttf-dejavu libexpat1 fonts-dejavu-core fontconfig-config libfontconfig1 libfreetype6 libpng16-16 && pip install --upgrade ansible"]
         },
         {
             "type": "ansible-local",
